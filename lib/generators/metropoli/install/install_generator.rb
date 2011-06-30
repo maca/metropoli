@@ -2,8 +2,8 @@ module Metropoli
   module Generators
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
-      class_option  :countries, :type => :array,   :default => %w(MX US), :desc => "List of countries to seed database with, you can select any number of pass 'all', run rake metropoli:countries to see a listing of available countries"
-      class_option  :with_jq,   :type => :boolean, :default => false,    :desc => "Copy autocompletion jQuery script"
+      class_option  :countries,   :type => :array,   :default => %w(MX US), :desc => "List of countries to seed database with, you can select any number of pass 'all', run rake metropoli:countries to see a listing of available countries"
+      class_option  :with_js, :type => :boolean, :default => false,     :desc => "Copy autocompletion jQuery script, jquery.ui.js and jquery.ui.css"
       
       source_root File.expand_path('../templates',__FILE__)
       
@@ -22,7 +22,7 @@ module Metropoli
       end
       
       def generate_cities
-        migration_template 'migrate/3_create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
+          migration_template 'migrate/3_create_metropoli_cities.rb', 'db/migrate/create_metropoli_cities.rb'
       end
       
       def generate_locale
@@ -43,8 +43,9 @@ module Metropoli
       end
       
       def generate_jquery_ui_javascript
-        if options.with_jq?
-          copy_file 'javascripts/metropoli.jquery.ui.js', 'public/javascripts/metropoli.jquery.ui.js'
+        if options.with_js?
+          assets_dir = '../../../../../app/assets/'
+          copy_file File.join(assets_dir, 'javascripts', 'metropoli.jquery.ui.js'), 'public/javascripts/metropoli.jquery.ui.js'
         end
       end
       
