@@ -7,7 +7,7 @@ module Metropoli
     delegate        :country, :to => :state
 
     def to_s
-      "#{self.name}, #{self.state.name}, #{self.country.name}"
+      "#{self.name}, #{self.state.name}, #{self.country.iso}"
     end
     alias :text :to_s
     
