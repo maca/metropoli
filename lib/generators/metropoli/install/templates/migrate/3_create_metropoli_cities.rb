@@ -8,8 +8,8 @@ class CreateMetropoliCities < ActiveRecord::Migration
       t.string  :alternate_names
       t.string  :name
 
-      t.integer :latitude
-      t.integer :longitude
+      t.float   :latitude
+      t.float   :longitude
       t.string  :timezone
     end
     
