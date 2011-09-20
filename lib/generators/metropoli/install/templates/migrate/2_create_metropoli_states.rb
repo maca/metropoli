@@ -8,8 +8,8 @@ class CreateMetropoliStates < ActiveRecord::Migration
       t.string  :name
       t.string  :abbr
 
-      t.integer :latitude
-      t.integer :longitude
+      t.float   :latitude
+      t.float   :longitude
       t.string  :timezone
     end
     
